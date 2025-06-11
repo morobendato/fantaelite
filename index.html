@@ -1,112 +1,128 @@
 <!DOCTYPE html>
 <html lang="it">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FantaElite – Prototipo iniziale</title>
-    <style>
-      * {
-        box-sizing: border-box;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fantaélite</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
 
-      body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-        background-color: #f9f9f9;
-        padding-top: 80px;
-      }
+    body {
+      background-color: #f9f9f9;
+      color: #000;
+    }
 
-      header {
-        background-color: #ffffff;
-        color: #000000;
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: auto;
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: space-between;
-        padding: 10px 16px;
-        border-bottom: 1px solid #ddd;
-        z-index: 1000;
-      }
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #fff;
+      padding: 10px 20px;
+      border-bottom: 1px solid #ccc;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
 
-      .logo {
-        height: 45px;
-        flex-shrink: 0;
-      }
+    .logo {
+      height: 40px;
+    }
 
-      nav {
-        display: flex;
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        gap: 10px;
-        margin-top: 8px;
-        width: 100%;
-      }
+    nav button {
+      background: none;
+      border: none;
+      margin: 0 5px;
+      padding: 8px 12px;
+      cursor: pointer;
+      font-weight: bold;
+      color: #000;
+      border-radius: 6px;
+      border: 1px solid transparent;
+    }
 
-      nav a {
-        color: #000;
-        text-decoration: none;
-        padding: 8px 12px;
-        font-size: 15px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        background-color: #fff;
-        white-space: nowrap;
-        flex-shrink: 0;
-      }
+    nav button:hover,
+    nav button.active {
+      border: 1px solid #000;
+      background-color: #eee;
+    }
 
-      nav a:hover {
-        background-color: #f0f0f0;
-      }
+    main section {
+      display: none;
+      padding: 20px;
+    }
 
-      main {
-        padding: 20px;
-        text-align: center;
-      }
+    main section.active {
+      display: block;
+    }
 
-      h1 {
-        font-size: 26px;
-        color: #333;
-      }
+    .card {
+      background: #fff;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 8px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
 
-      p {
-        font-size: 18px;
-        color: #555;
-      }
+    .ruolo-Portiere { background-color: #cce5ff; }
+    .ruolo-Difensore { background-color: #d4edda; }
+    .ruolo-Centrocampista { background-color: #fff3cd; }
+    .ruolo-Attaccante { background-color: #f8d7da; }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="https://www.dropbox.com/scl/fo/dfy7kirzyc4ed066hmrcn/ANUC60sSwHsK_wHbEyDqjKo/FANTAELITE%20sfondo%20bianco%20compresso.png?rlkey=j2qrt0uoj2axqg40lgftu30y4&raw=1" alt="Logo Fantaélite" class="logo">
+    <nav>
+      <button onclick="showSection('rosa')" class="active">Rosa</button>
+      <button onclick="showSection('mercato')">Mercato</button>
+      <button onclick="showSection('classifica')">Classifica</button>
+      <button onclick="showSection('impostazioni')">Impostazioni</button>
+    </nav>
+  </header>
+  <main>
+        <section id="rosa" class="active">
+      <h2>La tua rosa</h2>
+      <div class="card ruolo-Portiere">Donnarumma – Portiere – PSG</div>
+      <div class="card ruolo-Difensore">Di Lorenzo – Difensore – Napoli</div>
+      <div class="card ruolo-Centrocampista">Barella – Centrocampista – Inter</div>
+      <div class="card ruolo-Attaccante">Lautaro – Attaccante – Inter</div>
+    </section>
 
-      @media (min-width: 600px) {
-        header {
-          flex-wrap: nowrap;
-        }
-        nav {
-          margin-top: 0;
-          width: auto;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <header>
-      <img
-        src="https://www.dropbox.com/scl/fo/dfy7kirzyc4ed066hmrcn/ANUC60sSwHsK_wHbEyDqjKo/FANTAELITE%20sfondo%20bianco%20compresso.png?rlkey=j2qrt0uoj2axqg40lgftu30y4&raw=1"
-        alt="FantaElite Logo"
-        class="logo"
-      />
-      <nav>
-        <a href="#">Home</a>
-        <a href="#">Rosa</a>
-        <a href="#">Mercato</a>
-        <a href="#">Classifica</a>
-        <a href="#">Impostazioni</a>
-      </nav>
-    </header>
-    <main>
-      <h1>FantaElite – prototipo iniziale</h1>
-      <p>Benvenuto! Qui partirà la tua piattaforma di fantacalcio personalizzata.</p>
-    </main>
-  </body>
+    <section id="mercato">
+      <h2>Mercato</h2>
+      <div class="card ruolo-Centrocampista">Tonali – Centrocampista – Milan <button>Compra</button></div>
+      <div class="card ruolo-Attaccante">Vlahovic – Attaccante – Juventus <button>Compra</button></div>
+    </section>
+
+    <section id="classifica">
+      <h2>Classifica</h2>
+      <div class="card">1. Squadra A – 82 pt</div>
+      <div class="card">2. Squadra B – 76 pt</div>
+      <div class="card">3. Squadra C – 70 pt</div>
+    </section>
+
+    <section id="impostazioni">
+      <h2>Impostazioni</h2>
+      <div class="card">Qui andranno le preferenze utente.</div>
+    </section>
+  </main>
+    <script>
+    function showSection(id) {
+      document.querySelectorAll('main section').forEach(sec => {
+        sec.classList.remove('active');
+      });
+      document.querySelector(`#${id}`).classList.add('active');
+
+      document.querySelectorAll('nav button').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      event.target.classList.add('active');
+    }
+  </script>
+</body>
 </html>
