@@ -1,41 +1,83 @@
 <!DOCTYPE html>
 <html lang="it">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>FantaElite – prototipo iniziale</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding: 40px;
-      background-color: #f8f9fa;
-      color: #222;
-    }
-    .logo {
-      max-width: 200px;
-      height: auto;
-      display: block;
-      margin: 20px auto;
-    }
-    h1 {
-      margin-top: 30px;
-      font-size: 2rem;
-    }
-    p {
-      font-size: 1.2rem;
-      margin-top: 15px;
-      color: #555;
-    }
-  </style>
-</head>
-<body>
-  <img
-    src="https://www.dropbox.com/scl/fo/dfy7kirzyc4ed066hmrcn/ANUC60sSwHsK_wHbEyDqjKo/FANTAELITE%20sfondo%20bianco%20compresso.png?rlkey=j2qrt0uoj2axqg40lgftu30y4&raw=1"
-    alt="Logo FantaElite"
-    class="logo"
-  />
-  <h1>FantaElite – prototipo iniziale</h1>
-  <p>Benvenuto! Qui partirà la tua piattaforma di fantacalcio personalizzata.</p>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FantaElite – Prototipo iniziale</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: #f9f9f9;
+        text-align: center;
+        padding-top: 80px;
+      }
+
+      header {
+        background-color: #111;
+        color: white;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 20px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        z-index: 999;
+      }
+
+      .logo {
+        height: 40px;
+      }
+
+      nav a {
+        color: white;
+        text-decoration: none;
+        margin: 0 12px;
+        font-size: 15px;
+      }
+
+      nav a:hover {
+        text-decoration: underline;
+      }
+
+      main {
+        margin-top: 30px;
+        padding: 20px;
+      }
+
+      h1 {
+        font-size: 26px;
+        color: #333;
+      }
+
+      p {
+        font-size: 18px;
+        color: #555;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <img
+        src="https://www.dropbox.com/scl/fo/dfy7kirzyc4ed066hmrcn/ANUC60sSwHsK_wHbEyDqjKo/FANTAELITE%20sfondo%20bianco%20compresso.png?rlkey=j2qrt0uoj2axqg40lgftu30y4&st=mwaxockj&raw=1"
+        alt="FantaElite Logo"
+        class="logo"
+      />
+      <nav>
+        <a href="#">Home</a>
+        <a href="#">Rosa</a>
+        <a href="#">Mercato</a>
+        <a href="#">Classifica</a>
+        <a href="#">Impostazioni</a>
+      </nav>
+    </header>
+    <main>
+      <h1>FantaElite – prototipo iniziale</h1>
+      <p>Benvenuto! Qui partirà la tua piattaforma di fantacalcio personalizzata.</p>
+    </main>
+  </body>
 </html>
