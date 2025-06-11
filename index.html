@@ -13,7 +13,6 @@
         margin: 0;
         font-family: Arial, sans-serif;
         background-color: #f9f9f9;
-        text-align: center;
         padding-top: 80px;
       }
 
@@ -24,46 +23,49 @@
         top: 0;
         left: 0;
         right: 0;
-        height: 70px;
+        height: auto;
         display: flex;
+        flex-wrap: wrap;
         align-items: center;
         justify-content: space-between;
-        padding: 0 16px;
+        padding: 10px 16px;
         border-bottom: 1px solid #ddd;
         z-index: 1000;
       }
 
       .logo {
         height: 45px;
+        flex-shrink: 0;
       }
 
       nav {
         display: flex;
-        gap: 12px;
+        flex-wrap: nowrap;
         overflow-x: auto;
-        padding-left: 10px;
+        gap: 10px;
+        margin-top: 8px;
+        width: 100%;
       }
 
       nav a {
         color: #000;
         text-decoration: none;
-        padding: 8px 10px;
-        border-left: 1px solid #ccc;
+        padding: 8px 12px;
         font-size: 15px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        background-color: #fff;
         white-space: nowrap;
-      }
-
-      nav a:first-child {
-        border-left: none;
+        flex-shrink: 0;
       }
 
       nav a:hover {
         background-color: #f0f0f0;
-        border-radius: 4px;
       }
 
       main {
         padding: 20px;
+        text-align: center;
       }
 
       h1 {
@@ -76,9 +78,13 @@
         color: #555;
       }
 
-      @media (max-width: 600px) {
+      @media (min-width: 600px) {
+        header {
+          flex-wrap: nowrap;
+        }
         nav {
-          max-width: 100%;
+          margin-top: 0;
+          width: auto;
         }
       }
     </style>
@@ -86,7 +92,7 @@
   <body>
     <header>
       <img
-        src="https://www.dropbox.com/scl/fo/dfy7kirzyc4ed066hmrcn/ANUC60sSwHsK_wHbEyDqjKo/FANTAELITE%20sfondo%20bianco%20compresso.png?rlkey=j2qrt0uoj2axqg40lgftu30y4&st=mwaxockj&raw=1"
+        src="https://www.dropbox.com/scl/fo/dfy7kirzyc4ed066hmrcn/ANUC60sSwHsK_wHbEyDqjKo/FANTAELITE%20sfondo%20bianco%20compresso.png?rlkey=j2qrt0uoj2axqg40lgftu30y4&raw=1"
         alt="FantaElite Logo"
         class="logo"
       />
