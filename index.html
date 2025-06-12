@@ -2,127 +2,165 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Fantaélite</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, sans-serif;
-    }
-
     body {
-      background-color: #f9f9f9;
-      color: #000;
+      margin: 0;
+      font-family: sans-serif;
     }
 
     header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background-color: #fff;
-      padding: 10px 20px;
+      background-color: white;
       border-bottom: 1px solid #ccc;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 10px 0;
     }
 
     .logo {
-      height: 40px;
+      max-width: 300px;
+      width: 80%;
+      height: auto;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 10px;
     }
 
     nav button {
-      background: none;
-      border: none;
-      margin: 0 5px;
-      padding: 8px 12px;
+      padding: 10px;
+      background: white;
+      border: 1px solid #ccc;
+      color: black;
       cursor: pointer;
-      font-weight: bold;
-      color: #000;
-      border-radius: 6px;
-      border: 1px solid transparent;
     }
 
-    nav button:hover,
-    nav button.active {
-      border: 1px solid #000;
-      background-color: #eee;
+    nav button:hover {
+      background: #f0f0f0;
     }
 
-    main section {
-      display: none;
+    main {
       padding: 20px;
     }
 
-    main section.active {
-      display: block;
-    }
-
-    .card {
-      background: #fff;
-      padding: 10px;
+    .giocatore {
+      border: 1px solid #ccc;
       margin: 10px 0;
-      border-radius: 8px;
-      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+      padding: 10px;
     }
 
-    .ruolo-Portiere { background-color: #cce5ff; }
-    .ruolo-Difensore { background-color: #d4edda; }
-    .ruolo-Centrocampista { background-color: #fff3cd; }
-    .ruolo-Attaccante { background-color: #f8d7da; }
+    .giocatore button {
+      margin-top: 5px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      cursor: pointer;
+    }
+
+    .giocatore button:hover {
+      background-color: #0056b3;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    @media (max-width: 600px) {
+      .logo {
+        max-width: 250px;
+      }
+    }
   </style>
 </head>
 <body>
+
   <header>
-    <img src="https://www.dropbox.com/scl/fo/dfy7kirzyc4ed066hmrcn/ANUC60sSwHsK_wHbEyDqjKo/FANTAELITE%20sfondo%20bianco%20compresso.png?rlkey=j2qrt0uoj2axqg40lgftu30y4&raw=1" alt="Logo Fantaélite" class="logo">
+    <img src="https://www.dropbox.com/scl/fo/dfy7kirzyc4ed066hmrcn/ANUC60sSwHsK_wHbEyDqjKo/FANTAELITE%20sfondo%20bianco%20compresso.png?rlkey=j2qrt0uoj2axqg40lgftu30y4&st=mwaxockj&dl=1&raw=1" alt="Logo Fantaélite" class="logo">
     <nav>
-      <button onclick="showSection('rosa')" class="active">Rosa</button>
-      <button onclick="showSection('mercato')">Mercato</button>
-      <button onclick="showSection('classifica')">Classifica</button>
-      <button onclick="showSection('impostazioni')">Impostazioni</button>
+      <button onclick="filtraRuolo('Tutti')">Tutti</button>
+      <button onclick="filtraRuolo('Portiere')">Portieri</button>
+      <button onclick="filtraRuolo('Difensore')">Difensori</button>
+      <button onclick="filtraRuolo('Centrocampista')">Centrocampisti</button>
+      <button onclick="filtraRuolo('Attaccante')">Attaccanti</button>
+      <button onclick="mostraRosa()">La mia Rosa</button>
     </nav>
   </header>
-  <main>
-        <section id="rosa" class="active">
-      <h2>La tua rosa</h2>
-      <div class="card ruolo-Portiere">Donnarumma – Portiere – PSG</div>
-      <div class="card ruolo-Difensore">Di Lorenzo – Difensore – Napoli</div>
-      <div class="card ruolo-Centrocampista">Barella – Centrocampista – Inter</div>
-      <div class="card ruolo-Attaccante">Lautaro – Attaccante – Inter</div>
-    </section>
 
-    <section id="mercato">
-      <h2>Mercato</h2>
-      <div class="card ruolo-Centrocampista">Tonali – Centrocampista – Milan <button>Compra</button></div>
-      <div class="card ruolo-Attaccante">Vlahovic – Attaccante – Juventus <button>Compra</button></div>
-    </section>
-
-    <section id="classifica">
-      <h2>Classifica</h2>
-      <div class="card">1. Squadra A – 82 pt</div>
-      <div class="card">2. Squadra B – 76 pt</div>
-      <div class="card">3. Squadra C – 70 pt</div>
-    </section>
-
-    <section id="impostazioni">
-      <h2>Impostazioni</h2>
-      <div class="card">Qui andranno le preferenze utente.</div>
-    </section>
+  <main id="contenuto">
+    <!-- I giocatori saranno caricati qui -->
   </main>
-    <script>
-    function showSection(id) {
-      document.querySelectorAll('main section').forEach(sec => {
-        sec.classList.remove('active');
-      });
-      document.querySelector(`#${id}`).classList.add('active');
 
-      document.querySelectorAll('nav button').forEach(btn => {
-        btn.classList.remove('active');
-      });
-      event.target.classList.add('active');
+  <script>
+    const tuttiGiocatori = [
+      { nome: "Buffon", ruolo: "Portiere" },
+      { nome: "Chiellini", ruolo: "Difensore" },
+      { nome: "De Rossi", ruolo: "Centrocampista" },
+      { nome: "Totti", ruolo: "Attaccante" },
+      { nome: "Donnarumma", ruolo: "Portiere" },
+      { nome: "Maldini", ruolo: "Difensore" },
+      { nome: "Pirlo", ruolo: "Centrocampista" },
+      { nome: "Del Piero", ruolo: "Attaccante" }
+    ];
+
+    let rosa = JSON.parse(localStorage.getItem("rosa")) || [];
+
+    function salvaRosa() {
+      localStorage.setItem("rosa", JSON.stringify(rosa));
     }
+
+    function aggiungiAGliAcquisti(giocatore) {
+      if (!rosa.find(g => g.nome === giocatore.nome)) {
+        rosa.push(giocatore);
+        salvaRosa();
+        filtraRuolo('Tutti');
+      }
+    }
+
+    function filtraRuolo(ruolo) {
+      const contenuto = document.getElementById("contenuto");
+      contenuto.innerHTML = "";
+
+      const filtrati = ruolo === "Tutti"
+        ? tuttiGiocatori
+        : tuttiGiocatori.filter(g => g.ruolo === ruolo);
+
+      filtrati.forEach(g => {
+        if (!rosa.find(r => r.nome === g.nome)) {
+          const div = document.createElement("div");
+          div.className = "giocatore";
+          div.innerHTML = `<strong>${g.nome}</strong> (${g.ruolo})<br/><button onclick='aggiungiAGliAcquisti(${JSON.stringify(g)})'>Compra</button>`;
+          contenuto.appendChild(div);
+        }
+      });
+    }
+
+    function mostraRosa() {
+      const contenuto = document.getElementById("contenuto");
+      contenuto.innerHTML = "<h2>La tua Rosa</h2>";
+
+      if (rosa.length === 0) {
+        contenuto.innerHTML += "<p>Nessun giocatore acquistato.</p>";
+        return;
+      }
+
+      rosa.forEach(g => {
+        const div = document.createElement("div");
+        div.className = "giocatore";
+        div.innerHTML = `<strong>${g.nome}</strong> (${g.ruolo})`;
+        contenuto.appendChild(div);
+      });
+    }
+
+    // Carica all’avvio
+    filtraRuolo("Tutti");
   </script>
+
 </body>
 </html>
