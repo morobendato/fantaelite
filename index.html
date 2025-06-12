@@ -25,12 +25,33 @@
       height: auto;
     }
 
+    .menu-nav {
+      display: flex;
+      justify-content: space-around;
+      border-top: 1px solid #ccc;
+      border-bottom: 1px solid #ccc;
+      background-color: white;
+    }
+
+    .menu-nav button {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      background: none;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .menu-nav button:hover {
+      background-color: #eee;
+    }
+
     nav {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 10px;
-      margin-top: 10px;
+      margin: 10px 0;
     }
 
     nav button {
@@ -76,6 +97,16 @@
       .logo {
         max-width: 250px;
       }
+
+      .menu-nav {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .menu-nav button {
+        text-align: center;
+        border-bottom: 1px solid #ccc;
+      }
     }
   </style>
 </head>
@@ -83,18 +114,46 @@
 
   <header>
     <img src="https://www.dropbox.com/scl/fo/dfy7kirzyc4ed066hmrcn/ANUC60sSwHsK_wHbEyDqjKo/FANTAELITE%20sfondo%20bianco%20compresso.png?rlkey=j2qrt0uoj2axqg40lgftu30y4&st=mwaxockj&dl=1&raw=1" alt="Logo Fantaélite" class="logo">
-    <nav>
-      <button onclick="filtraRuolo('Tutti')">Tutti</button>
-      <button onclick="filtraRuolo('Portiere')">Portieri</button>
-      <button onclick="filtraRuolo('Difensore')">Difensori</button>
-      <button onclick="filtraRuolo('Centrocampista')">Centrocampisti</button>
-      <button onclick="filtraRuolo('Attaccante')">Attaccanti</button>
-      <button onclick="mostraRosa()">La mia Rosa</button>
-    </nav>
+    <div class="menu-nav">
+      <button onclick="mostraSezione('home')">Home</button>
+      <button onclick="mostraSezione('mercato')">Mercato</button>
+      <button onclick="mostraSezione('rosa')">Rosa</button>
+      <button onclick="mostraSezione('classifica')">Classifica</button>
+      <button onclick="mostraSezione('impostazioni')">Impostazioni</button>
+    </div>
   </header>
 
-  <main id="contenuto">
-    <!-- I giocatori saranno caricati qui -->
+  <main>
+    <section id="home">
+      <h2>Benvenuto su Fantaélite</h2>
+      <p>Scegli una sezione dal menù per iniziare.</p>
+    </section>
+
+    <section id="mercato" class="hidden">
+      <nav>
+        <button onclick="filtraRuolo('Tutti')">Tutti</button>
+        <button onclick="filtraRuolo('Portiere')">Portieri</button>
+        <button onclick="filtraRuolo('Difensore')">Difensori</button>
+        <button onclick="filtraRuolo('Centrocampista')">Centrocampisti</button>
+        <button onclick="filtraRuolo('Attaccante')">Attaccanti</button>
+      </nav>
+      <div id="contenutoMercato"></div>
+    </section>
+
+    <section id="rosa" class="hidden">
+      <h2>La tua Rosa</h2>
+      <div id="contenutoRosa"></div>
+    </section>
+
+    <section id="classifica" class="hidden">
+      <h2>Classifica</h2>
+      <p>In arrivo nelle prossime fasi!</p>
+    </section>
+
+    <section id="impostazioni" class="hidden">
+      <h2>Impostazioni</h2>
+      <p>Qui potrai personalizzare la tua esperienza di gioco.</p>
+    </section>
   </main>
 
   <script>
@@ -124,7 +183,7 @@
     }
 
     function filtraRuolo(ruolo) {
-      const contenuto = document.getElementById("contenuto");
+      const contenuto = document.getElementById("contenutoMercato");
       contenuto.innerHTML = "";
 
       const filtrati = ruolo === "Tutti"
@@ -142,8 +201,8 @@
     }
 
     function mostraRosa() {
-      const contenuto = document.getElementById("contenuto");
-      contenuto.innerHTML = "<h2>La tua Rosa</h2>";
+      const contenuto = document.getElementById("contenutoRosa");
+      contenuto.innerHTML = "";
 
       if (rosa.length === 0) {
         contenuto.innerHTML += "<p>Nessun giocatore acquistato.</p>";
@@ -158,8 +217,18 @@
       });
     }
 
-    // Carica all’avvio
-    filtraRuolo("Tutti");
+    function mostraSezione(id) {
+      document.querySelectorAll("main section").forEach(sec => {
+        sec.classList.add("hidden");
+      });
+      document.getElementById(id).classList.remove("hidden");
+
+      if (id === "mercato") filtraRuolo("Tutti");
+      if (id === "rosa") mostraRosa();
+    }
+
+    // Mostra home all'avvio
+    mostraSezione("home");
   </script>
 
 </body>
