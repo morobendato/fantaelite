@@ -1,78 +1,149 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>FantaElite - Schermata Iniziale</title>
-<style>
-  body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #f2f4f6;
-  }
-  header {
-    background: #d9dce0; /* grigio chiaro */
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 8px 20px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* ombra leggera */
-  }
-  #logo {
-    height: 40px;
-  }
-  nav {
-    display: flex;
-    gap: 12px;
-  }
-  nav button {
-    background-color: #5a8dee; /* blu logo */
-    border: none;
-    padding: 8px 14px;
-    border-radius: 4px;
-    color: white;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  nav button:hover {
-    background-color: #3d66c1;
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FantaElite</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+    }
+    header {
+      background-color: #f7f7f7;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 20px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    header img {
+      height: 50px;
+    }
+    .buttons {
+      display: flex;
+      gap: 10px;
+    }
+    .buttons button {
+      padding: 8px 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .login-btn { background-color: #007bff; color: white; }
+    .register-btn { background-color: #6c757d; color: white; }
+    .logout-btn { background-color: #dc3545; color: white; }
+    .create-btn { background-color: #28a745; color: white; }
+    .join-btn { background-color: #17a2b8; color: white; }
+
+    .main-content {
+      padding: 20px;
+    }
+    .leghe-container {
+      display: none;
+      margin-top: 30px;
+    }
+    .lega-card {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      margin-bottom: 15px;
+    }
+    .lega-card button {
+      margin-top: 10px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
+  <header>
+    <img src="https://i.postimg.cc/kXrsc5ff/FANTAELITE-trasparente-compresso.png" alt="Logo FantaElite" />
+    <div class="buttons" id="authButtons">
+      <button class="login-btn" onclick="login()">Accedi</button>
+      <button class="register-btn" onclick="register()">Registrati</button>
+    </div>
+  </header>
 
-<header>
-  <img id="logo" src="https://i.postimg.cc/kXrsc5ff/FANTAELITE-trasparente-compresso.png" alt="Logo FantaElite" />
-  <nav id="navButtons">
-    <!-- I bottoni saranno inseriti dinamicamente da JS -->
-  </nav>
-</header>
+  <div class="main-content">
+    <div id="welcome">Benvenuto su FantaElite, la tua piattaforma per il fantacalcio personalizzato!</div>
 
-<script>
-  // Simuliamo lo stato di login (true = loggato, false = non loggato)
-  let loggedIn = true; // Cambia qui per testare il comportamento
+    <div class="buttons" style="margin-top: 20px;">
+      <button class="create-btn" onclick="createLeague()">Crea Lega</button>
+      <button class="join-btn" onclick="joinLeague()">Cerca Lega</button>
+    </div>
 
-  const nav = document.getElementById('navButtons');
-  nav.innerHTML = ''; // puliamo
+    <div class="leghe-container" id="userLeagues">
+      <h2>Le tue leghe</h2>
+      <div class="lega-card">
+        <h3>FantaSerie A 2024</h3>
+        <p>Lega ufficiale tra amici</p>
+        <button onclick="enterLeague('FantaSerie A 2024')">Entra</button>
+      </div>
+      <div class="lega-card">
+        <h3>Elite Cup</h3>
+        <p>Lega privata</p>
+        <button onclick="enterLeague('Elite Cup')">Entra</button>
+      </div>
+    </div>
+  </div>
 
-  if (!loggedIn) {
-    // Non loggato: login, registrati, cerca lega, crea lega
-    nav.innerHTML = `
-      <button onclick="alert('Vai a Login')">Accedi</button>
-      <button onclick="alert('Vai a Registrati')">Registrati</button>
-      <button onclick="alert('Cerca Lega')">Cerca Lega</button>
-      <button onclick="alert('Crea Lega')">Crea Lega</button>
-    `;
-  } else {
-    // Loggato: logout, cerca lega, crea lega
-    nav.innerHTML = `
-      <button onclick="alert('Logout')">Logout</button>
-      <button onclick="alert('Cerca Lega')">Cerca Lega</button>
-      <button onclick="alert('Crea Lega')">Crea Lega</button>
-    `;
-  }
-</script>
+  <script>
+    let loggedIn = false; // cambia in true per testare modalità loggata
 
+    function updateUI() {
+      const authButtons = document.getElementById('authButtons');
+      const userLeagues = document.getElementById('userLeagues');
+      if (loggedIn) {
+        authButtons.innerHTML = `
+          <button class="logout-btn" onclick="logout()">Logout</button>
+        `;
+        userLeagues.style.display = 'block';
+      } else {
+        authButtons.innerHTML = `
+          <button class="login-btn" onclick="login()">Accedi</button>
+          <button class="register-btn" onclick="register()">Registrati</button>
+        `;
+        userLeagues.style.display = 'none';
+      }
+    }
+
+    function login() {
+      loggedIn = true;
+      updateUI();
+    }
+
+    function logout() {
+      loggedIn = false;
+      updateUI();
+    }
+
+    function register() {
+      alert("Funzione registrazione in sviluppo!");
+    }
+
+    function createLeague() {
+      alert("Funzione creazione lega in sviluppo!");
+    }
+
+    function joinLeague() {
+      alert("Funzione cerca lega in sviluppo!");
+    }
+
+    function enterLeague(nome) {
+      alert(`Entri nella lega: ${nome}`);
+      window.location.href = 'home_lega.html';
+    }
+
+    // aggiorna la UI in base al login all'avvio
+    updateUI();
+  </script>
 </body>
 </html>
