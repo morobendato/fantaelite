@@ -8,187 +8,116 @@
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background-color: #f2f2f2;
+      background-color: #f0f0f0;
     }
-    header {
-      background-color: #f7f7f7;
+
+    .navbar {
       display: flex;
-      align-items: center;
       justify-content: space-between;
+      align-items: center;
+      background-color: #f5f5f5;
       padding: 10px 20px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
-    header img {
-      height: 50px;
+
+    .navbar img {
+      height: 40px;
     }
-    .buttons {
+
+    .navbar .buttons {
       display: flex;
       gap: 10px;
     }
-    .buttons button {
-      padding: 8px 16px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-    .login-btn { background-color: #007bff; color: white; }
-    .register-btn { background-color: #6c757d; color: white; }
-    .logout-btn { background-color: #dc3545; color: white; }
-    .create-btn { background-color: #28a745; color: white; }
-    .join-btn { background-color: #17a2b8; color: white; }
 
-    .main-content {
-      padding: 20px;
-    }
-    .leghe-container {
-      display: none;
-      margin-top: 30px;
-    }
-    .lega-card {
-      background-color: white;
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      padding: 20px;
-      margin-bottom: 15px;
-    }
-    .lega-card button {
-      margin-top: 10px;
-      background-color: #007bff;
-      color: white;
+    .navbar button {
+      background-color: #e0e0e0;
+      color: #333;
       border: none;
-      padding: 8px 12px;
-      border-radius: 5px;
+      padding: 8px 16px;
       cursor: pointer;
+      border-radius: 5px;
+    }
+
+    .navbar button:hover {
+      background-color: #d5d5d5;
+    }
+
+    .content {
+      padding: 20px;
+    }
+
+    h1 {
+      color: #333;
     }
   </style>
 </head>
 <body>
-  <header>
-    <div id="user-leagues" style="display: none; max-width: 800px; margin: 2rem auto; padding: 1rem;">
-  <h2 style="text-align:center; color:#004080;">Le tue leghe</h2>
-  <div id="leagues-list" style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center;">
-    <!-- Leghe verranno inserite qui -->
+
+  <div class="navbar">
+    <img src="https://i.postimg.cc/kXrsc5ff/FANTAELITE-trasparente-compresso.png" alt="FantaElite Logo" />
+    <div class="buttons">
+      <button id="loginBtn">Accedi</button>
+      <button id="registerBtn">Registrati</button>
+      <button id="logoutBtn" style="display: none;">Logout</button>
+      <button id="createLeagueBtn" style="display: none;">Crea Lega</button>
+      <button id="searchLeagueBtn" style="display: none;">Cerca Lega</button>
+    </div>
   </div>
-    </div>
-    <img src="https://i.postimg.cc/kXrsc5ff/FANTAELITE-trasparente-compresso.png" alt="Logo FantaElite" />
-    <div class="buttons" id="authButtons">
-      <button class="login-btn" onclick="login()">Accedi</button>
-      <button class="register-btn" onclick="register()">Registrati</button>
-    </div>
-  </header>
 
-  <div class="main-content">
-    <div id="welcome">Benvenuto su FantaElite, la tua piattaforma per il fantacalcio personalizzato!</div>
-
-    <div class="buttons" style="margin-top: 20px;">
-      <button class="create-btn" onclick="createLeague()">Crea Lega</button>
-      <button class="join-btn" onclick="joinLeague()">Cerca Lega</button>
-    </div>
-
-    <div class="leghe-container" id="userLeagues">
-      <h2>Le tue leghe</h2>
-      <div class="lega-card">
-        <h3>FantaSerie A 2024</h3>
-        <p>Lega ufficiale tra amici</p>
-        <button onclick="enterLeague('FantaSerie A 2024')">Entra</button>
-      </div>
-      <div class="lega-card">
-        <h3>Elite Cup</h3>
-        <p>Lega privata</p>
-        <button onclick="enterLeague('Elite Cup')">Entra</button>
-      </div>
-    </div>
+  <div class="content" id="mainContent">
+    <h1>Benvenuto su FantaElite!</h1>
+    <p>Crea o entra in una lega per iniziare.</p>
   </div>
 
   <script>
-    let loggedIn = false; // cambia in true per testare modalità loggata
+    let isLoggedIn = false;
 
-    function updateUI() {
-      const authButtons = document.getElementById('authButtons');
-      const userLeagues = document.getElementById('userLeagues');
-      if (loggedIn) {
-        authButtons.innerHTML = `
-          <button class="logout-btn" onclick="logout()">Logout</button>
-        `;
-        userLeagues.style.display = 'block';
+    function updateNavbar() {
+      const loginBtn = document.getElementById("loginBtn");
+      const registerBtn = document.getElementById("registerBtn");
+      const logoutBtn = document.getElementById("logoutBtn");
+      const createLeagueBtn = document.getElementById("createLeagueBtn");
+      const searchLeagueBtn = document.getElementById("searchLeagueBtn");
+
+      if (isLoggedIn) {
+        loginBtn.style.display = "none";
+        registerBtn.style.display = "none";
+        logoutBtn.style.display = "inline-block";
+        createLeagueBtn.style.display = "inline-block";
+        searchLeagueBtn.style.display = "inline-block";
       } else {
-        authButtons.innerHTML = `
-          <button class="login-btn" onclick="login()">Accedi</button>
-          <button class="register-btn" onclick="register()">Registrati</button>
-        `;
-        userLeagues.style.display = 'none';
+        loginBtn.style.display = "inline-block";
+        registerBtn.style.display = "inline-block";
+        logoutBtn.style.display = "none";
+        createLeagueBtn.style.display = "none";
+        searchLeagueBtn.style.display = "none";
       }
     }
 
-    function login() {
-      loggedIn = true;
-      updateUI();
-    }
-
-    function logout() {
-      loggedIn = false;
-      updateUI();
-    }
-
-    function register() {
-      alert("Funzione registrazione in sviluppo!");
-    }
-
-    function createLeague() {
-      alert("Funzione creazione lega in sviluppo!");
-    }
-
-    function joinLeague() {
-      alert("Funzione cerca lega in sviluppo!");
-    }
-
-    function enterLeague(nome) {
-      alert(`Entri nella lega: ${nome}`);
-      window.location.href = 'home_lega.html';
-    }
-
-    // aggiorna la UI in base al login all'avvio
-    updateUI();
-  </script>
-  <script>
-  const isLoggedIn = localStorage.getItem("loggedIn") === "true";
-
-  if (isLoggedIn) {
-    const userLeaguesSection = document.getElementById("user-leagues");
-    const leaguesList = document.getElementById("leagues-list");
-    userLeaguesSection.style.display = "block";
-
-    // Simulazione: elenco leghe dell’utente
-    const userLeagues = [
-      { name: "Fantaélite A", id: 1 },
-      { name: "Fantaélite B", id: 2 },
-      { name: "Coppa Umbra", id: 3 }
-    ];
-
-    userLeagues.forEach(lega => {
-      const card = document.createElement("div");
-      card.style.background = "#fff";
-      card.style.borderRadius = "10px";
-      card.style.boxShadow = "0 2px 8px rgba(0,0,0,0.1)";
-      card.style.padding = "1rem";
-      card.style.width = "220px";
-      card.style.textAlign = "center";
-
-      card.innerHTML = `
-        <h3 style="color:#333;">${lega.name}</h3>
-        <button onclick="entraNellaLega(${lega.id})" class="btn">Entra</button>
+    document.getElementById("loginBtn").addEventListener("click", function () {
+      isLoggedIn = true;
+      updateNavbar();
+      document.getElementById("mainContent").innerHTML = `
+        <h2>Le tue leghe</h2>
+        <ul>
+          <li><a href="home_lega.html">Lega Serie A</a></li>
+          <li><a href="home_lega.html">Lega Champions</a></li>
+        </ul>
       `;
-      leaguesList.appendChild(card);
     });
-  }
 
-  function entraNellaLega(id) {
-    console.log("Entrato nella lega ID:", id);
-    // In futuro: setta ID lega, carica dati, ecc.
-    window.location.href = "home_lega.html";
-  }
+    document.getElementById("logoutBtn").addEventListener("click", function () {
+      isLoggedIn = false;
+      updateNavbar();
+      document.getElementById("mainContent").innerHTML = `
+        <h1>Benvenuto su FantaElite!</h1>
+        <p>Crea o entra in una lega per iniziare.</p>
+      `;
+    });
+
+    // Inizializza navbar correttamente al primo caricamento
+    updateNavbar();
   </script>
-  
+
 </body>
 </html>
