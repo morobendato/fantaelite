@@ -65,6 +65,12 @@
 </head>
 <body>
   <header>
+    <div id="user-leagues" style="display: none; max-width: 800px; margin: 2rem auto; padding: 1rem;">
+  <h2 style="text-align:center; color:#004080;">Le tue leghe</h2>
+  <div id="leagues-list" style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center;">
+    <!-- Leghe verranno inserite qui -->
+  </div>
+    </div>
     <img src="https://i.postimg.cc/kXrsc5ff/FANTAELITE-trasparente-compresso.png" alt="Logo FantaElite" />
     <div class="buttons" id="authButtons">
       <button class="login-btn" onclick="login()">Accedi</button>
@@ -145,5 +151,44 @@
     // aggiorna la UI in base al login all'avvio
     updateUI();
   </script>
+  <script>
+  const isLoggedIn = localStorage.getItem("loggedIn") === "true";
+
+  if (isLoggedIn) {
+    const userLeaguesSection = document.getElementById("user-leagues");
+    const leaguesList = document.getElementById("leagues-list");
+    userLeaguesSection.style.display = "block";
+
+    // Simulazione: elenco leghe dell’utente
+    const userLeagues = [
+      { name: "Fantaélite A", id: 1 },
+      { name: "Fantaélite B", id: 2 },
+      { name: "Coppa Umbra", id: 3 }
+    ];
+
+    userLeagues.forEach(lega => {
+      const card = document.createElement("div");
+      card.style.background = "#fff";
+      card.style.borderRadius = "10px";
+      card.style.boxShadow = "0 2px 8px rgba(0,0,0,0.1)";
+      card.style.padding = "1rem";
+      card.style.width = "220px";
+      card.style.textAlign = "center";
+
+      card.innerHTML = `
+        <h3 style="color:#333;">${lega.name}</h3>
+        <button onclick="entraNellaLega(${lega.id})" class="btn">Entra</button>
+      `;
+      leaguesList.appendChild(card);
+    });
+  }
+
+  function entraNellaLega(id) {
+    console.log("Entrato nella lega ID:", id);
+    // In futuro: setta ID lega, carica dati, ecc.
+    window.location.href = "home_lega.html";
+  }
+  </script>
+  
 </body>
 </html>
