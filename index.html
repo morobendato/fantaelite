@@ -3,79 +3,76 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Fantaélite</title>
+  <title>Fantaélite - Benvenuto</title>
   <style>
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      text-align: center;
-      background-color: #f0f0f0;
+      background-color: #f5f5f5;
+      color: #333;
     }
+
     header {
-      background-color: #000;
-      color: white;
-      padding: 1rem;
-    }
-    #logo {
-      max-width: 200px;
-      margin-top: 20px;
-    }
-    .container {
-      padding: 2rem;
-    }
-    button {
+      background-color: #e0e0e0; /* grigio chiaro al posto del nero */
       padding: 10px 20px;
-      margin: 10px;
-      font-size: 1rem;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-    .primary {
+
+    header img {
+      max-height: 80px;
+    }
+
+    .container {
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    .buttons {
+      margin-top: 30px;
+    }
+
+    .buttons a {
+      text-decoration: none;
       background-color: #007bff;
       color: white;
+      padding: 12px 24px;
+      margin: 10px;
+      border-radius: 8px;
+      font-size: 18px;
+      display: inline-block;
+      transition: background-color 0.3s ease;
     }
-    .secondary {
-      background-color: #6c757d;
-      color: white;
+
+    .buttons a:hover {
+      background-color: #0056b3;
     }
-    #homeLega {
-      display: none;
+
+    .buttons .secondary {
+      background-color: #ccc;
+      color: #333;
+    }
+
+    .buttons .secondary:hover {
+      background-color: #aaa;
     }
   </style>
 </head>
 <body>
-
   <header>
-    <img id="logo" src="https://i.postimg.cc/kXrsc5ff/FANTAELITE-trasparente-compresso.png" alt="Logo Fantaélite">
-    <h1>Benvenuto su Fantaélite</h1>
+    <img src="https://i.postimg.cc/kXrsc5ff/FANTAELITE-trasparente-compresso.png" alt="Logo Fantaélite">
   </header>
 
-  <div id="loginPage" class="container">
-    <p>Il fantacalcio dove l’élite sei tu!</p>
-    <button class="primary" onclick="login()">Accedi</button>
-    <button class="secondary">Registrati</button>
+  <div class="container">
+    <h1>Benvenuto su Fantaélite</h1>
+    <p>Accedi o registrati per iniziare la tua avventura!</p>
+
+    <div class="buttons">
+      <a href="home_lega.html">Accedi</a>
+      <a href="#" class="secondary">Registrati</a>
+      <a href="#" class="secondary">Crea Lega</a>
+    </div>
   </div>
-
-  <div id="homeLega" class="container">
-    <h2>Home di Lega</h2>
-    <button class="primary">Crea Lega</button>
-    <button class="secondary">Unisciti a una Lega</button>
-    <button class="primary">Visualizza Rosa</button>
-    <button class="secondary" onclick="logout()">Logout</button>
-  </div>
-
-  <script>
-    function login() {
-      document.getElementById('loginPage').style.display = 'none';
-      document.getElementById('homeLega').style.display = 'block';
-    }
-
-    function logout() {
-      document.getElementById('homeLega').style.display = 'none';
-      document.getElementById('loginPage').style.display = 'block';
-    }
-  </script>
-
 </body>
 </html>
