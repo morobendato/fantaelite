@@ -60,7 +60,7 @@
 <body>
 
   <header>
-    <img src="https://www.dropbox.com/scl/fi/3vucci6qjo25bxpeqram9/FANTAELITE-trasparente-compresso.png?rlkey=2riu9tvhe88h6ngeu9svu721y&e=1&st=09xo43vy&dl=0" alt="Logo FantaX">
+    <img src="https://ucarecdn.com/f6a1cf3c-4e89-41e1-bbc2-2d401372ee76/logo_fantax_trasparente.png" alt="Logo FantaX">
     <nav>
       <button id="loginBtn">Accedi</button>
       <button id="registerBtn">Registrati</button>
@@ -77,15 +77,19 @@
       <p>Crea la tua lega o unisciti a una già esistente. Vivi il fantacalcio come non mai!</p>
     </div>
 
-    <!-- Home di Lega -->
+    <!-- Home di Lega completa -->
     <div id="leagueHome" class="hidden home-section">
       <h2>🏟️ Home di Lega</h2>
-      <p>Benvenuto nella tua lega! Qui troverai tutte le informazioni principali.</p>
-      <ul>
-        <li><strong>Nome lega:</strong> (da definire)</li>
-        <li><strong>Giocatori iscritti:</strong> (numero dinamico)</li>
-        <li><strong>Stato della lega:</strong> (es. in attesa di completamento rosa)</li>
-      </ul>
+      <p>Benvenuto nella tua lega! Qui troverai tutte le funzioni principali:</p>
+      <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px;">
+        <button class="btn">Gestione Squadra</button>
+        <button class="btn">Mercato</button>
+        <button class="btn">Calendario</button>
+        <button class="btn">Classifica</button>
+        <button class="btn">Statistiche</button>
+        <button class="btn">Chat di Lega</button>
+        <button class="btn">Impostazioni Lega</button>
+      </div>
     </div>
   </div>
 
@@ -135,7 +139,6 @@
     createLeagueBtn.addEventListener('click', () => alert("Funzione di creazione lega non ancora disponibile."));
     joinLeagueBtn.addEventListener('click', () => alert("Funzione di unione a lega non ancora disponibile."));
 
-    // Inizializza la vista
     updateView();
   </script>
 
