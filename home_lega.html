@@ -68,9 +68,41 @@
         .buttons-grid button:hover {
             background-color: #cccccc;
         }
+        .top-menu {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 10px 20px;
+  background-color: #e6e6e6; /* grigio chiaro */
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  border-radius: 6px;
+  margin-bottom: 15px;
+}
+
+.btn-secondary {
+  background-color: #d4d4d4; /* grigio medio */
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  color: #1a4a9f; /* blu logo */
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.25s ease;
+}
+
+.btn-secondary:hover {
+  background-color: #b0b0b0;
+}
+
     </style>
 </head>
 <body>
+    <div class="top-menu">
+  <button class="btn-secondary" onclick="accedi()">Accedi</button>
+  <button class="btn-secondary" onclick="registrati()">Registrati</button>
+  <button class="btn-secondary" onclick="logout()">Logout</button>
+</div>
+
     <header>
         <img src="https://i.postimg.cc/kXrsc5ff/FANTAELITE-trasparente-compresso.png" alt="FantaÉlite Logo">
         <nav>
@@ -98,5 +130,19 @@
             <button>Impostazioni</button>
         </div>
     </div>
+    <script>
+  function accedi() {
+    alert("Funzione 'Accedi' in arrivo!");
+  }
+
+  function registrati() {
+    alert("Funzione 'Registrati' in arrivo!");
+  }
+
+  function logout() {
+    alert("Hai effettuato il logout.");
+  }
+</script>
+
 </body>
 </html>
