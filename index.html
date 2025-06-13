@@ -3,143 +3,78 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>FantaX</title>
+  <title>Fantaélite</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
       margin: 0;
-      padding: 0;
-      background: #f5f5f5;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f0f0f0;
     }
     header {
-      background-color: #222;
+      background-color: #000;
       color: white;
-      padding: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      padding: 1rem;
     }
-    header img {
-      height: 40px;
-    }
-    nav button {
-      margin-left: 10px;
-      padding: 6px 12px;
-      border: none;
-      background-color: #fff;
-      color: #222;
-      cursor: pointer;
-      border-radius: 4px;
+    #logo {
+      max-width: 200px;
+      margin-top: 20px;
     }
     .container {
-      padding: 20px;
+      padding: 2rem;
     }
-    .hidden {
-      display: none;
-    }
-    .btn {
+    button {
       padding: 10px 20px;
       margin: 10px;
-      background-color: #222;
-      color: white;
+      font-size: 1rem;
       border: none;
-      border-radius: 6px;
+      border-radius: 5px;
       cursor: pointer;
     }
-    .btn:hover {
-      background-color: #444;
+    .primary {
+      background-color: #007bff;
+      color: white;
     }
-    .home-section {
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      margin-top: 20px;
+    .secondary {
+      background-color: #6c757d;
+      color: white;
+    }
+    #homeLega {
+      display: none;
     }
   </style>
 </head>
 <body>
 
   <header>
-    <img src="https://www.dropbox.com/scl/fi/3vucci6qjo25bxpeqram9/FANTAELITE-trasparente-compresso.png?rlkey=2riu9tvhe88h6ngeu9svu721y&st=klw69dsf&dl=0" alt="Logo FantaX">
-    <nav>
-      <button id="loginBtn">Accedi</button>
-      <button id="registerBtn">Registrati</button>
-      <button id="createLeagueBtn">Crea Lega</button>
-      <button id="joinLeagueBtn">Unisciti a una Lega</button>
-      <button id="logoutBtn" class="hidden">Esci</button>
-    </nav>
+    <img id="logo" src="https://i.postimg.cc/kXrsc5ff/FANTAELITE-trasparente-compresso.png" alt="Logo Fantaélite">
+    <h1>Benvenuto su Fantaélite</h1>
   </header>
 
-  <div class="container">
-    <!-- Schermata Iniziale -->
-    <div id="initialScreen">
-      <h1>Benvenuto su FantaX</h1>
-      <p>Crea la tua lega o unisciti a una già esistente. Vivi il fantacalcio come non mai!</p>
-    </div>
+  <div id="loginPage" class="container">
+    <p>Il fantacalcio dove l’élite sei tu!</p>
+    <button class="primary" onclick="login()">Accedi</button>
+    <button class="secondary">Registrati</button>
+  </div>
 
-    <!-- Home di Lega completa -->
-    <div id="leagueHome" class="hidden home-section">
-      <h2>🏟️ Home di Lega</h2>
-      <p>Benvenuto nella tua lega! Qui troverai tutte le funzioni principali:</p>
-      <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px;">
-        <button class="btn">Gestione Squadra</button>
-        <button class="btn">Mercato</button>
-        <button class="btn">Calendario</button>
-        <button class="btn">Classifica</button>
-        <button class="btn">Statistiche</button>
-        <button class="btn">Chat di Lega</button>
-        <button class="btn">Impostazioni Lega</button>
-      </div>
-    </div>
+  <div id="homeLega" class="container">
+    <h2>Home di Lega</h2>
+    <button class="primary">Crea Lega</button>
+    <button class="secondary">Unisciti a una Lega</button>
+    <button class="primary">Visualizza Rosa</button>
+    <button class="secondary" onclick="logout()">Logout</button>
   </div>
 
   <script>
-    let loggedIn = false;
-
-    const loginBtn = document.getElementById('loginBtn');
-    const logoutBtn = document.getElementById('logoutBtn');
-    const registerBtn = document.getElementById('registerBtn');
-    const createLeagueBtn = document.getElementById('createLeagueBtn');
-    const joinLeagueBtn = document.getElementById('joinLeagueBtn');
-
-    const initialScreen = document.getElementById('initialScreen');
-    const leagueHome = document.getElementById('leagueHome');
-
-    function updateView() {
-      if (loggedIn) {
-        initialScreen.classList.add('hidden');
-        leagueHome.classList.remove('hidden');
-        loginBtn.classList.add('hidden');
-        registerBtn.classList.add('hidden');
-        createLeagueBtn.classList.add('hidden');
-        joinLeagueBtn.classList.add('hidden');
-        logoutBtn.classList.remove('hidden');
-      } else {
-        initialScreen.classList.remove('hidden');
-        leagueHome.classList.add('hidden');
-        loginBtn.classList.remove('hidden');
-        registerBtn.classList.remove('hidden');
-        createLeagueBtn.classList.remove('hidden');
-        joinLeagueBtn.classList.remove('hidden');
-        logoutBtn.classList.add('hidden');
-      }
+    function login() {
+      document.getElementById('loginPage').style.display = 'none';
+      document.getElementById('homeLega').style.display = 'block';
     }
 
-    loginBtn.addEventListener('click', () => {
-      loggedIn = true;
-      updateView();
-    });
-
-    logoutBtn.addEventListener('click', () => {
-      loggedIn = false;
-      updateView();
-    });
-
-    registerBtn.addEventListener('click', () => alert("Funzione di registrazione non ancora disponibile."));
-    createLeagueBtn.addEventListener('click', () => alert("Funzione di creazione lega non ancora disponibile."));
-    joinLeagueBtn.addEventListener('click', () => alert("Funzione di unione a lega non ancora disponibile."));
-
-    updateView();
+    function logout() {
+      document.getElementById('homeLega').style.display = 'none';
+      document.getElementById('loginPage').style.display = 'block';
+    }
   </script>
 
 </body>
