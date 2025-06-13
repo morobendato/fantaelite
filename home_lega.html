@@ -1,0 +1,102 @@
+
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FantaÉlite - Home Lega</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        header {
+            background-color: #ffffff;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        header img {
+            height: 50px;
+        }
+        nav button {
+            margin-left: 10px;
+            background-color: #4a90e2;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .container {
+            padding: 20px;
+        }
+        .lega-info {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .lega-info h2 {
+            margin-top: 0;
+            color: #4a90e2;
+        }
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 0;
+        }
+        .buttons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 15px;
+        }
+        .buttons-grid button {
+            padding: 15px;
+            font-size: 16px;
+            background-color: #e0e0e0;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .buttons-grid button:hover {
+            background-color: #cccccc;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="https://i.postimg.cc/kXrsc5ff/FANTAELITE-trasparente-compresso.png" alt="FantaÉlite Logo">
+        <nav>
+            <button>Login</button>
+            <button>Logout</button>
+            <button>Crea Lega</button>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="lega-info">
+            <h2>Lega: Campioni della Domenica</h2>
+            <div class="info-row">
+                <div><strong>Partecipanti:</strong> 8 / 10</div>
+                <div><strong>Stato Asta:</strong> Non iniziata</div>
+                <div><strong>Giornata Attuale:</strong> 1</div>
+            </div>
+        </div>
+        <div class="buttons-grid">
+            <button>Visualizza Rosa</button>
+            <button>Asta</button>
+            <button>Mercato</button>
+            <button>Calendario</button>
+            <button>Classifica</button>
+            <button>Bacheca</button>
+            <button>Impostazioni</button>
+        </div>
+    </div>
+</body>
+</html>
