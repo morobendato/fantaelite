@@ -2,233 +2,144 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Fantaélite</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FantaLega</title>
   <style>
     body {
       margin: 0;
-      font-family: sans-serif;
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
     }
 
     header {
-      background-color: white;
-      border-bottom: 1px solid #ccc;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 10px 0;
-    }
-
-    .logo {
-      max-width: 300px;
-      width: 80%;
-      height: auto;
-    }
-
-    .menu-nav {
-      display: flex;
-      justify-content: space-around;
-      border-top: 1px solid #ccc;
-      border-bottom: 1px solid #ccc;
-      background-color: white;
-    }
-
-    .menu-nav button {
-      flex: 1;
+      background-color: #fff;
+      border-bottom: 1px solid #ddd;
       padding: 10px;
-      border: none;
-      background: none;
-      cursor: pointer;
-      font-weight: bold;
+      text-align: center;
     }
 
-    .menu-nav button:hover {
-      background-color: #eee;
+    header img {
+      max-height: 80px;
     }
 
     nav {
       display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-      margin: 10px 0;
+      justify-content: space-around;
+      background-color: #fff;
+      border-bottom: 1px solid #ddd;
+      padding: 10px 0;
+      position: sticky;
+      top: 0;
     }
 
     nav button {
-      padding: 10px;
-      background: white;
-      border: 1px solid #ccc;
-      color: black;
+      background: none;
+      border: none;
+      font-size: 16px;
+      color: #333;
       cursor: pointer;
     }
 
     nav button:hover {
-      background: #f0f0f0;
+      color: #0077cc;
     }
 
-    main {
+    .main {
       padding: 20px;
     }
 
-    .giocatore {
-      border: 1px solid #ccc;
-      margin: 10px 0;
-      padding: 10px;
+    .card {
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 15px;
+      margin-bottom: 20px;
     }
 
-    .giocatore button {
-      margin-top: 5px;
-      background-color: #007bff;
-      color: white;
-      border: none;
-      padding: 6px 12px;
-      cursor: pointer;
+    .card h2 {
+      margin-top: 0;
     }
 
-    .giocatore button:hover {
-      background-color: #0056b3;
-    }
-
-    .hidden {
-      display: none;
-    }
-
-    @media (max-width: 600px) {
-      .logo {
-        max-width: 250px;
-      }
-
-      .menu-nav {
-        flex-direction: column;
-        align-items: stretch;
-      }
-
-      .menu-nav button {
-        text-align: center;
-        border-bottom: 1px solid #ccc;
-      }
+    .highlight {
+      font-weight: bold;
+      color: #0077cc;
     }
   </style>
 </head>
 <body>
 
+  <!-- Schermata Iniziale -->
   <header>
-    <img src="https://www.dropbox.com/scl/fo/dfy7kirzyc4ed066hmrcn/ANUC60sSwHsK_wHbEyDqjKo/FANTAELITE%20sfondo%20bianco%20compresso.png?rlkey=j2qrt0uoj2axqg40lgftu30y4&st=mwaxockj&dl=1&raw=1" alt="Logo Fantaélite" class="logo">
-    <div class="menu-nav">
-      <button onclick="mostraSezione('home')">Home</button>
-      <button onclick="mostraSezione('mercato')">Mercato</button>
-      <button onclick="mostraSezione('rosa')">Rosa</button>
-      <button onclick="mostraSezione('classifica')">Classifica</button>
-      <button onclick="mostraSezione('impostazioni')">Impostazioni</button>
-    </div>
+    <img src="https://www.dropbox.com/scl/fi/qy4tuh2ib9ov0zy8gxv41/Logo-FantaLega.png?rlkey=z8re3cx7tc8fxolslz1v0t6ql&dl=1" alt="Logo FantaLega" />
   </header>
 
-  <main>
-    <section id="home">
-      <h2>Benvenuto su Fantaélite</h2>
-      <p>Scegli una sezione dal menù per iniziare.</p>
-    </section>
+  <nav>
+    <button onclick="mostraSezione('home')">Home</button>
+    <button onclick="mostraSezione('rosa')">Rosa</button>
+    <button onclick="mostraSezione('mercato')">Mercato</button>
+    <button onclick="mostraSezione('classifica')">Classifica</button>
+    <button onclick="mostraSezione('impostazioni')">Impostazioni</button>
+  </nav>
 
-    <section id="mercato" class="hidden">
-      <nav>
-        <button onclick="filtraRuolo('Tutti')">Tutti</button>
-        <button onclick="filtraRuolo('Portiere')">Portieri</button>
-        <button onclick="filtraRuolo('Difensore')">Difensori</button>
-        <button onclick="filtraRuolo('Centrocampista')">Centrocampisti</button>
-        <button onclick="filtraRuolo('Attaccante')">Attaccanti</button>
-      </nav>
-      <div id="contenutoMercato"></div>
-    </section>
+  <div class="main" id="contenuto">
+    <!-- Contenuto Home di Lega -->
+    <div id="home">
+      <div class="card">
+        <h2>Nome Lega</h2>
+        <p class="highlight">FantaLeggenda 2025</p>
+      </div>
 
-    <section id="rosa" class="hidden">
-      <h2>La tua Rosa</h2>
-      <div id="contenutoRosa"></div>
-    </section>
+      <div class="card">
+        <h2>Codice Lega</h2>
+        <p>abc123xyz</p>
+      </div>
 
-    <section id="classifica" class="hidden">
-      <h2>Classifica</h2>
-      <p>In arrivo nelle prossime fasi!</p>
-    </section>
+      <div class="card">
+        <h2>Allenatore</h2>
+        <p>Mister X</p>
+      </div>
 
-    <section id="impostazioni" class="hidden">
-      <h2>Impostazioni</h2>
-      <p>Qui potrai personalizzare la tua esperienza di gioco.</p>
-    </section>
-  </main>
+      <div class="card">
+        <h2>Squadra</h2>
+        <p>FC Distruttori</p>
+      </div>
+
+      <div class="card">
+        <h2>Mercato</h2>
+        <p>Aperto fino al 31 agosto</p>
+      </div>
+
+      <div class="card">
+        <h2>Scadenza Formazione</h2>
+        <p>Ogni venerdì alle 18:30</p>
+      </div>
+    </div>
+
+    <!-- Placeholder per altre sezioni -->
+    <div id="rosa" style="display:none;">
+      <div class="card"><p>Sezione Rosa: in lavorazione</p></div>
+    </div>
+
+    <div id="mercato" style="display:none;">
+      <div class="card"><p>Sezione Mercato: in lavorazione</p></div>
+    </div>
+
+    <div id="classifica" style="display:none;">
+      <div class="card"><p>Sezione Classifica: in lavorazione</p></div>
+    </div>
+
+    <div id="impostazioni" style="display:none;">
+      <div class="card"><p>Sezione Impostazioni: in lavorazione</p></div>
+    </div>
+  </div>
 
   <script>
-    const tuttiGiocatori = [
-      { nome: "Buffon", ruolo: "Portiere" },
-      { nome: "Chiellini", ruolo: "Difensore" },
-      { nome: "De Rossi", ruolo: "Centrocampista" },
-      { nome: "Totti", ruolo: "Attaccante" },
-      { nome: "Donnarumma", ruolo: "Portiere" },
-      { nome: "Maldini", ruolo: "Difensore" },
-      { nome: "Pirlo", ruolo: "Centrocampista" },
-      { nome: "Del Piero", ruolo: "Attaccante" }
-    ];
-
-    let rosa = JSON.parse(localStorage.getItem("rosa")) || [];
-
-    function salvaRosa() {
-      localStorage.setItem("rosa", JSON.stringify(rosa));
-    }
-
-    function aggiungiAGliAcquisti(giocatore) {
-      if (!rosa.find(g => g.nome === giocatore.nome)) {
-        rosa.push(giocatore);
-        salvaRosa();
-        filtraRuolo('Tutti');
-      }
-    }
-
-    function filtraRuolo(ruolo) {
-      const contenuto = document.getElementById("contenutoMercato");
-      contenuto.innerHTML = "";
-
-      const filtrati = ruolo === "Tutti"
-        ? tuttiGiocatori
-        : tuttiGiocatori.filter(g => g.ruolo === ruolo);
-
-      filtrati.forEach(g => {
-        if (!rosa.find(r => r.nome === g.nome)) {
-          const div = document.createElement("div");
-          div.className = "giocatore";
-          div.innerHTML = `<strong>${g.nome}</strong> (${g.ruolo})<br/><button onclick='aggiungiAGliAcquisti(${JSON.stringify(g)})'>Compra</button>`;
-          contenuto.appendChild(div);
-        }
-      });
-    }
-
-    function mostraRosa() {
-      const contenuto = document.getElementById("contenutoRosa");
-      contenuto.innerHTML = "";
-
-      if (rosa.length === 0) {
-        contenuto.innerHTML += "<p>Nessun giocatore acquistato.</p>";
-        return;
-      }
-
-      rosa.forEach(g => {
-        const div = document.createElement("div");
-        div.className = "giocatore";
-        div.innerHTML = `<strong>${g.nome}</strong> (${g.ruolo})`;
-        contenuto.appendChild(div);
-      });
-    }
-
     function mostraSezione(id) {
-      document.querySelectorAll("main section").forEach(sec => {
-        sec.classList.add("hidden");
+      const sezioni = ['home', 'rosa', 'mercato', 'classifica', 'impostazioni'];
+      sezioni.forEach(s => {
+        document.getElementById(s).style.display = s === id ? 'block' : 'none';
       });
-      document.getElementById(id).classList.remove("hidden");
-
-      if (id === "mercato") filtraRuolo("Tutti");
-      if (id === "rosa") mostraRosa();
     }
-
-    // Mostra home all'avvio
-    mostraSezione("home");
   </script>
 
 </body>
